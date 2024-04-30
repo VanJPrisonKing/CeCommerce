@@ -16,13 +16,13 @@ How many types of user:
 ## User stories
 
 ### publisher
-As a publisher (customer), I want to publish my order, so that a receiver (supplier) can bid on my order
-As a publisher (customer), I want to see all my  orders, so  that i can track and manage all my orders
+As a publisher (customer), I want to publish my order, so that a receiver (supplier) can bid on my order  
+As a publisher (customer), I want to see all my  orders, so  that i can track and manage all my orders  
 As a publisher (customer), I want to see the list of publishers  who has bid to my  order, so that I can myself choose my receiver(supplier). 
 
 
 ### Receiver(supplier)
-As a receiver(supplier), I want to see orders of receivers, so that I can supply the order and make money
+As a receiver(supplier), I want to see orders of receivers, so that I can supply the order and make money  
 As a receiver(supplier), I want to search orders of receivers based on price, so that I can make the highest amount of money  
 
 ### Admin
