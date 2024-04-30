@@ -14,9 +14,7 @@ class Order(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
-class Choice(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-    def __str__(self):
-        return self.choice_text
+# class Information(models.Model):
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+#     information_text = models.CharField(max_length=200)
+#     votes = models.IntegerField(default=0)
