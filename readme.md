@@ -1,4 +1,4 @@
-# How to run? 环境配置
+# How to run?
 Install Python interpreter >= 3.11  
 安装大于等于3.11的Python解释器
 
