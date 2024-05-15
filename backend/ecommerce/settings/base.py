@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "orders",
     "rest_framework",
+    "ecommerce.product",
 ]
 
 MIDDLEWARE = [
@@ -34,7 +35,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "store.urls"
+ROOT_URLCONF = "ecommerce.urls"
 
 TEMPLATES = [
     {
@@ -52,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "store.wsgi.application"
+WSGI_APPLICATION = "ecommerce.wsgi.application"
 
 
 # Password validation
