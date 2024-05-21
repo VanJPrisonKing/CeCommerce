@@ -3,3 +3,4 @@ venv/
 .coverage
 .vscode
 backend/.env
+htmlcov/
