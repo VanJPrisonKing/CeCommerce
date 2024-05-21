@@ -20,8 +20,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "orders",
+    # External Packages
     "rest_framework",
+    "drf_spectacular",
+    # Internal Apps
+    "orders",
     "ecommerce.product",
 ]
 
@@ -97,9 +100,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    "DEFAULT_PERMISSION_CLASSES": [],
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
-}
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
+
+SPECTACULAR_SETTINGS = {"TITLE": "Django DRF Ecommerce"}

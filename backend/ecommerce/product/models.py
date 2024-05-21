@@ -14,11 +14,11 @@ class Category(MPTTModel):
         return self.name
 
 
-class Product(models.Model):
+class Demand(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     is_digital = models.BooleanField(default=False)
-    Category = TreeForeignKey(
+    category = TreeForeignKey(
         "category", on_delete=models.SET_NULL, null=True, blank=True
     )
 

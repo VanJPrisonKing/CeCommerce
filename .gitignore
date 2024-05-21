@@ -2,4 +2,4 @@
 venv/
 .coverage
 .vscode
-store/.env
+backend/.env
