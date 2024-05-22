@@ -5,7 +5,7 @@ As Max, I want to invite my friends, so we can enjoy this service together.
 As Sascha, I want to organize my work, so I can feel more in control. 
 As a manager, I want to be able to understand my colleagues progress, so I can better report our sucess and failures. 
 
-
+ 
 [insert name of website later]
 
 How many types of user:  
