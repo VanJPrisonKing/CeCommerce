@@ -10,11 +10,14 @@ from .serializers import OrderSerializer
 # CBV
 # from django.views import View
 from rest_framework.views import APIView
+from rest_framework.viewsets import ViewSet 
 
-class OrderView(APIView):
-    def get(self, request):
-        order_list = Order.objects.all()
-        serializer = OrderSerializer(instance=order_list, many=True)
+class OrderViewSet(ViewSet):
+
+    queryset = Order.objects.all()
+
+    def list(self, request):
+        serializer = OrderSerializer(instance=self.queryset, many=True)
         return Response(serializer.data)
         # return HttpResponse(serializer.data)
     
