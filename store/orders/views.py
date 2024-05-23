@@ -1,26 +1,13 @@
 from django.shortcuts import render
 from .models import Order, Category
-
-from rest_framework import serializers
+from .serializers import OrderSerializer, CategorySerializer
 from rest_framework.viewsets import ModelViewSet
-
-
-class OrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
-        fields = "__all__"
 
 
 # class OrderView(GenericViewSet,ListModelMixin,等5项):
 class OrderView(ModelViewSet):  # ViewSet重塑了分发机制
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = "__all__"
 
 
 class CategoryView(ModelViewSet):

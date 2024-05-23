@@ -15,11 +15,14 @@ class Order(models.Model):
     )
     is_digital = models.BooleanField(default=False)
     description = models.TextField(blank=True)
+    category = models.ForeignKey(
+        "category", on_delete=models.SET_NULL, null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"title: {self.title} price: {self.price} is_digital: {self.is_digital} description: {self.description}"
+        return self.title
 
 
 class Category(models.Model):
