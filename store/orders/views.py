@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Order, Category
 
 from rest_framework import serializers
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -11,12 +11,8 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class OrderView(ListCreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-
-
-class OrderDetailView(RetrieveUpdateDestroyAPIView):
+# class OrderView(GenericViewSet,ListModelMixin,等5项):
+class OrderView(ModelViewSet):  # ViewSet重塑了分发机制
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
@@ -27,17 +23,33 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class CategoryView(ListCreateAPIView):
+class CategoryView(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
-class CategoryDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+# ===============基于Mixin再封装的接口实现================
+
+# from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+
+# class OrderView(ListCreateAPIView):
+#     queryset = Order.objects.all()
+#     serializer_class = OrderSerializer
+
+# class OrderDetailView(RetrieveUpdateDestroyAPIView):
+#     queryset = Order.objects.all()
+#     serializer_class = OrderSerializer
+
+# class CategoryView(ListCreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
+# class CategoryDetailView(RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
 
 
-# ===============基于APIView的接口实现================
+# ===============基于APIView的接口实现, 最灵活================
 
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
