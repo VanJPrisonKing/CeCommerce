@@ -20,3 +20,10 @@ class Order(models.Model):
 
     def __str__(self):
         return f"title: {self.title} price: {self.price} is_digital: {self.is_digital} description: {self.description}"
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
