@@ -2,11 +2,18 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from .models import Order
 
-from .serializers import OrderSerializer
+# from .serializers import OrderSerializer
+from rest_framework import serializers
 
 # CBV
 # from django.views import View
 from rest_framework.views import APIView
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"
 
 
 class OrderView(APIView):
@@ -24,7 +31,7 @@ class OrderView(APIView):
         # 校验数据
         if serializer.is_valid():  # 所有字段皆通过才返回True
             # 数据校验通过 serializer.validated_data   serialzer.errors
-            Order.objects.create(**serializer.validated_data)
+            serializer.save()  # Order.objects.create(**serializer.validated_data)
             return Response(serializer.data)
         else:
             # 校验失败
@@ -43,9 +50,7 @@ class OrderDetailView(APIView):
         serializer = OrderSerializer(instance=order, data=request.data)
         # 校验数据
         if serializer.is_valid():
-            Order.objects.filter(pk=id).update(**serializer.validated_data)
-            updated_order = Order.objects.get(pk=id)
-            serializer.instance = updated_order
+            serializer.save()  # update
             return Response(serializer.data)
         else:
             # 校验失败
