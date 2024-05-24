@@ -2,4 +2,7 @@ on: push
 
 jobs:
   job1:
-  job2:
+    runs-on: windows-latest
+    steps:
+      - run: pwd
+      - run: ls
