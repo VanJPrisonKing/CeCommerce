@@ -10,7 +10,7 @@ class OrderAPITestCase(APITestCase):
         self.client = APIClient()
         self.order_url = reverse("order-list")
         self.category = Category.objects.create(name="Test Category")
-        self.order_data = {
+        self.order_id_data = {
             "title": "Test Order",
             "price": "9.99",
             "is_digital": False,
@@ -26,11 +26,11 @@ class OrderAPITestCase(APITestCase):
         }
 
     def test_create_order(self):
-        response = self.client.post(self.order_url, self.order_data, format="json")
-        if response.status_code != status.HTTP_201_CREATED:
-            print(response.data)
+        response = self.client.post(self.order_url, self.order_id_data, format="json")
+        # if response.status_code != status.HTTP_201_CREATED:
+        # print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Order.objects.count(), 2)
+        self.assertEqual(Order.objects.count(), 1)
         self.assertEqual(Order.objects.get().title, "Test Order")
 
     def test_get_orders(self):
@@ -58,17 +58,11 @@ class OrderAPITestCase(APITestCase):
         url = reverse("order-detail", kwargs={"pk": order.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        print(response.data)
+        # print(response.data)
         self.assertEqual(response.data["title"], "Test Order")
 
     def test_update_order(self):
-        order = Order.objects.create(
-            title="Test Order",
-            price=Decimal("9.99"),
-            is_digital=False,
-            description="A test order.",
-            category=self.category,
-        )
+        order = Order.objects.create(**self.order_full_data)
         url = reverse("order-detail", kwargs={"pk": order.pk})
         updated_data = {
             "title": "Updated Order",
@@ -85,13 +79,7 @@ class OrderAPITestCase(APITestCase):
         self.assertEqual(order.is_digital, True)
 
     def test_delete_order(self):
-        order = Order.objects.create(
-            title="Test Order",
-            price=Decimal("9.99"),
-            is_digital=False,
-            description="A test order.",
-            category=self.category,
-        )
+        order = Order.objects.create(**self.order_full_data)
         url = reverse("order-detail", kwargs={"pk": order.pk})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

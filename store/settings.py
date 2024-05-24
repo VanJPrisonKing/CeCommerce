@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "orders",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,5 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     "TITLE": "This is a Title",
 }
+
+# AUTH_USER_MODEL = "users.CustomUser"
