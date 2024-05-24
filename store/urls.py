@@ -4,12 +4,13 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
 
 from orders.views import OrderView, CategoryView
-from users.views import UserSimpleView
+from users.views import UserSimpleView, UserLoginView
 
 router = DefaultRouter()
 router.register("order", OrderView)
 router.register("category", CategoryView)
 router.register("user", UserSimpleView)
+router.register("user-login", UserLoginView, basename="user-login")
 
 urlpatterns = [
     path("admin/", admin.site.urls),

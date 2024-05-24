@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build1:
+  build-linux:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -27,7 +27,7 @@ jobs:
       - name: Run Tests
         run: |
           python manage.py test
-  build2:
+  build-windows:
     runs-on: windows-latest
     strategy:
       max-parallel: 4
