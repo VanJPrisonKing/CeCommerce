@@ -53,7 +53,7 @@ class OrderAPITestCase(APITestCase):
         self.assertEqual(len(response.data), 2)
         self.assertEqual(response.data[0]["title"], "Test Order")
 
-    def test_get_single_orders(self):
+    def test_retrieve_orders(self):
         order = Order.objects.create(**self.order_full_data)
         url = reverse("order-detail", kwargs={"pk": order.pk})
         response = self.client.get(url)

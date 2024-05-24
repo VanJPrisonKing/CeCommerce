@@ -41,3 +41,19 @@ class CategoryAPITestCase(APITestCase):
         response = self.client.delete(delete_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Category.objects.count(), 0)
+
+    def test_retrieve_category(self):
+        category = Category.objects.create(name="Books")
+        retrieve_url = reverse("category-detail", kwargs={"pk": category.pk})
+        response = self.client.get(retrieve_url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["name"], "Books")
+
+    def test_patch_category(self):
+        category = Category.objects.create(name="Books")
+        patch_url = reverse("category-detail", kwargs={"pk": category.pk})
+        updated_data = {"name": "Updated Books"}
+        response = self.client.patch(patch_url, updated_data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        category.refresh_from_db()
+        self.assertEqual(category.name, "Updated Books")
