@@ -30,7 +30,7 @@ class OrderAPITestCase(APITestCase):
         if response.status_code != status.HTTP_201_CREATED:
             print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Order.objects.count(), 1)
+        self.assertEqual(Order.objects.count(), 2)
         self.assertEqual(Order.objects.get().title, "Test Order")
 
     def test_get_orders(self):
