@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
+from .serializers import UserSimpleSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserSimpleView(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSimpleSerializer
