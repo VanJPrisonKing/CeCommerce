@@ -1,7 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
-from ..models import Order, Category
+from orders.models import Order, Category
 from decimal import Decimal
 
 

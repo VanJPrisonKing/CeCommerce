@@ -1,5 +1,5 @@
 from rest_framework.test import APITestCase
-from ..models import Order, Category
+from orders.models import Order, Category
 
 # Create your tests here.
 
