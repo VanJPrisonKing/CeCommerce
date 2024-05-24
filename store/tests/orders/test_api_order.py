@@ -84,3 +84,12 @@ class OrderAPITestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Order.objects.count(), 0)
+
+    def test_patch_order(self):
+        order = Order.objects.create(**self.order_full_data)
+        patch_url = reverse("order-detail", kwargs={"pk": order.pk})
+        updated_data = {"title": "Update for patch"}
+        response = self.client.patch(patch_url, updated_data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        order.refresh_from_db()
+        self.assertEqual(order.title, "Update for patch")
