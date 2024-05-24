@@ -12,14 +12,26 @@ class UserSimpleSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    username_or_email = serializers.CharField()
+    username = serializers.CharField()
     password = serializers.CharField()
 
     def validate(self, data):
-        username_or_email = data.get("username_or_email")
+        username = data.get("username")
         password = data.get("password")
-        if not (username_or_email and password):
+        if not (username and password):
             raise serializers.ValidationError(
-                "Both username/email and password are required."
+                "Both username and password are required."
             )
         return data
+
+
+class UserSignupSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "password"]
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user

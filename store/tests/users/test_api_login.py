@@ -13,36 +13,26 @@ class UserLoginTestCase(APITestCase):
         )
 
     def test_valid_login(self):
-        data = {"username_or_email": "testuser", "password": "testpassword"}
+        data = {"username": "testuser", "password": "testpassword"}
         response = self.client.post(self.login_url, data, format="json")
-        print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["message"], "Login successful")
-
-    def test_valid_email_login(self):
-        data = {"username_or_email": "testuser@example.com", "password": "testpassword"}
-        response = self.client.post(self.login_url, data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["message"], "Login successful")
 
     def test_invalid_credentials(self):
         data = {
-            "username_or_email": "testuser@example.com",
+            "username": "testuser@example.com",
             "password": "invalidpassword",
         }
         response = self.client.post(self.login_url, data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(response.data["message"], "Invalid credentials")
 
-    def test_missing_username_or_email(self):
+    def test_missing_username(self):
         data = {"password": "testpassword"}
         response = self.client.post(self.login_url, data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_missing_password(self):
-        data = {"username_or_email": "testuser"}
+        data = {"username": "testuser"}
         response = self.client.post(self.login_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "This is a Title",
+    "TITLE": "CeCommerce API",
 }
 
 # AUTH_USER_MODEL = "users.CustomUser"
