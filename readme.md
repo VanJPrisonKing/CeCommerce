@@ -3,7 +3,7 @@ Install Python interpreter >= 3.11
 安装大于等于3.11的Python解释器
 
 Enter the command in terminal  
-`pip install Django djangorestframework`
+`pip install Django djangorestframework drf-spectacular`
 
 cd into customized-ecommerce/store/ then type in terminal  
 `python manage.py runserver`
